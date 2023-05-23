@@ -1,22 +1,23 @@
-import React, { useEffect, useState } from "react";
-import Carousel, { consts } from "react-elastic-carousel";
+import React, { useState, useEffect } from "react";
+import Slider from "react-slick";
 import axios from "axios";
 import styled from "styled-components";
 
-const ContainerCarousel = styled.section`
+const SliderBox = styled.section`
+display: flex;
+flex-direction: column;
+  height: 70vh;
+  padding: 1rem;
+  border: 2px white;
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  background-color: #000000;
-`;
-const CarouselTitle = styled.h2`
-  font-family: "Open Sans", sans-serif;
-  font-weight: 700;
-  font-size: 0.8rem;
+  background: black;
   color: #f2f2f2;
 `;
 
 const Lancamentos = styled.h2`
+    padding-bottom: 2rem;
   color: #f2f2f2;
 `;
 
@@ -28,44 +29,54 @@ const CarouselDate = styled.h3`
   opacity: 0.5;
 `;
 
-export default function CarouselComponent() {
+const CarouselTitle = styled.h2`
+  font-family: "Open Sans", sans-serif;
+  font-weight: 700;
+  font-size: 0.8rem;
+  color: #f2f2f2;
+`;
+
+export default function Carousel() {
   const [filmes, setFilmes] = useState([]);
 
-  useEffect(() => {
-    getFilmes();
-  }, []);
-
-  const getFilmes = async () => {
-    await axios
+  const getApi = () => {
+    axios
       .get(
         "https://api.themoviedb.org/3/movie/popular?api_key=34635a3c54d72514d08fd6979b14e222&language=pt-Br&page=1"
       )
-      .then((resposta) => {
-        const allApi = resposta.data.results.map((item) => {
-          return {
-            ...item,
-            image: `https://image.tmdb.org/t/p/w500/${item.poster_path}`
-          };
-        });
-        setFilmes(allApi);
-      })
-      .catch((error) =>
-        alert(`desculpe, você teve um erro de requisição ${error}`)
-      );
+      .then((response) => {
+        setFilmes(response.data.results);
+      });
   };
 
+  useEffect(() => {
+    getApi();
+  }, []);
+
+  const settings = {
+    infinite: true,
+    speed: 500,
+    slidesToShow: 5,
+    slidesToScroll: 5
+  };
   return (
-    <ContainerCarousel>
+    <SliderBox>
       <Lancamentos>Últimos Lançamentos</Lancamentos>
-      <Carousel itemsToScroll={3} itemsToShow={5} itemPadding={[30, 30]}>
+      <Slider {...settings} style={{ width: "95%" }}>
         {filmes.map((item) => (
+          
           <div>
-            <img src={item.image} style={{ width: "90%" }} />
-            <CarouselTitle>{item.title}</CarouselTitle>
-            <CarouselDate>{item.release_date}</CarouselDate>
+            <img
+              src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}
+              alt={item.title}
+              style={{ width: "70%" }}
+            />
+           <CarouselTitle>{item.title}</CarouselTitle>
+            <CarouselDate>{item.release_date.split("-")[0]}</CarouselDate>
           </div>
         ))}
-      </Carousel>
-    </ContainerCarousel>
+      </Slider>
+    </SliderBox>
   );
 }
+

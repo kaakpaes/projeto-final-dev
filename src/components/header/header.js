@@ -9,6 +9,7 @@ export const HeaderStyle = styled.header`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  background-color: rgba(25,23,65, .9);
   backdrop-filter: blur(15px);
   width: 100%;
   height: 10vh;
@@ -52,13 +53,6 @@ export const A = styled.a`
 `;
 
 export default function Header() {
-  const [searchBar, setSearchBar] = useState(false);
-
-  const clickHandler = () => {
-    event.preventDefault();
-    setSearchBar(true);
-  }
-
   return (
     <HeaderStyle>
       <nav>
@@ -70,7 +64,7 @@ export default function Header() {
 
         <ul>
           <LiMenu>
-            <A href="#series">Séries</A>
+            <A href="/series">Séries</A>
           </LiMenu>
           <LiMenu>
             <A href="#filmes">Filmes</A>
@@ -79,10 +73,7 @@ export default function Header() {
 
         <ul>
           <LiMenu>
-            <a href="#" onClick={clickHandler}>
-              <img src={Lupa} alt="lupa" />
-            </a>
-            {searchBar && <S.InputSearch />}
+            <img src={Lupa} alt="lupa" />
           </LiMenu>
           <LiMenu>
             <a href="#filmes">Filtro</a>

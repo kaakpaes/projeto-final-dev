@@ -66,6 +66,7 @@ export default function Filmes() {
   const [filtrados, setFiltrados] = useState([]);
   const [mode, setMode] = useState(false);
 
+
   useEffect(() => {
     getFilmes();
     filtar();
@@ -85,14 +86,11 @@ export default function Filmes() {
         });
         setFilmes(allApi);
       })
-      .catch((error) =>
-        alert(`desculpe, você teve um erro de requisição ${error}`)
-      );
   };
 
   const filtar = () => {
     const filtros = filmes.filter((item) => {
-      if (item.title.toLowerCase().includes(input.toLocaleLowerCase())) {
+      if (item.title.toLowerCase().includes(input.toLowerCase())) {
         return true;
       } else {
         return false;
@@ -119,7 +117,7 @@ export default function Filmes() {
         <BoxFilms>
           <img src={item.image} alt={item.title} style={{ width: "60%" }} />
           <FilmesTitle>{item.title}</FilmesTitle>
-          <FilmesDate>{item.release_date}</FilmesDate>
+          <FilmesDate>{item.release_date.split("-")[0]}</FilmesDate>
         </BoxFilms>
       ))}
     </FilmesStyle>
