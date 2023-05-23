@@ -1,8 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import * as S from "./style";
 import Lupa from "../header/lupa.png";
 
 export default function NavComponent() {
+  const [searchBar, setSearchBar] = useState(false);
+
+  const clickHandler = () => {
+    event.preventDefault();
+    setSearchBar(true);
+  }
   return (
     <S.NavBar>
       <S.NavList>
@@ -14,13 +20,11 @@ export default function NavComponent() {
         <S.NavItem>Crime</S.NavItem>
         <S.NavItem>Fantasia</S.NavItem>
         <S.NavItem>Familia</S.NavItem>
-        <img src={Lupa} alt="lupa" />
+        <a href="#" onClick={clickHandler}>
+          <img src={Lupa} alt="lupa" />
+        </a>
+        {searchBar && <S.InputSearch />}
       </S.NavList>
-      {/* <SearchBar /> */}
     </S.NavBar>
   );
 }
-
-// const SearchBar = () => {
-//   return <S.InputSearch />;
-// };

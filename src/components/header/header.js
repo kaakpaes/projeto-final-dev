@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import Logo from "../header/logo.png";
 import Lupa from "../header/lupa.png";
+import * as S from "../NavBar/style";
 
 export const HeaderStyle = styled.header`
   position: fixed;
@@ -51,6 +52,13 @@ export const A = styled.a`
 `;
 
 export default function Header() {
+  const [searchBar, setSearchBar] = useState(false);
+
+  const clickHandler = () => {
+    event.preventDefault();
+    setSearchBar(true);
+  }
+
   return (
     <HeaderStyle>
       <nav>
@@ -71,7 +79,10 @@ export default function Header() {
 
         <ul>
           <LiMenu>
-            <img src={Lupa} alt="lupa" />
+            <a href="#" onClick={clickHandler}>
+              <img src={Lupa} alt="lupa" />
+            </a>
+            {searchBar && <S.InputSearch />}
           </LiMenu>
           <LiMenu>
             <a href="#filmes">Filtro</a>

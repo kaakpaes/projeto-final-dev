@@ -20,8 +20,8 @@ export const NavItem = styled.li`
   color: white;
 `;
 
-// export const InputSearch = styled.input`
-//   width: 20%;
-//   height: 3vh;
-//   border-radius: 5px;
-// `;
+export const InputSearch = styled.input`
+  width: 20%;
+  height: 3vh;
+  border-radius: 5px;
+`;
