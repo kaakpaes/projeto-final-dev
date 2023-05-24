@@ -1,15 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 import Logo from "../header/logo.png";
 import Lupa from "../header/lupa.png";
-import * as S from "../NavBar/style";
+import InputSearch from "./inputheader";
+
 
 export const HeaderStyle = styled.header`
   position: fixed;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background-color: rgba(25,23,65, .9);
+  background-color: rgba(119, 136, 153, 0.4);
+  -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(15px);
   width: 100%;
   height: 10vh;
@@ -53,6 +55,28 @@ export const A = styled.a`
 `;
 
 export default function Header() {
+
+    const [searchBar, setSearchBar] = useState(false); 
+    const imgRef = useRef(null);
+
+  const clickHandler = () => {
+    setSearchBar(true);
+  };
+
+  const handleClickOutside = (event) => {
+    if (imgRef.current && !imgRef.current.contains(event.target)) {
+      setSearchBar(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener('click', handleClickOutside);
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, []);
+
+
   return (
     <HeaderStyle>
       <nav>
@@ -67,16 +91,17 @@ export default function Header() {
             <A href="/series">Séries</A>
           </LiMenu>
           <LiMenu>
-            <A href="#filmes">Filmes</A>
+            <A href="/">Filmes</A>
           </LiMenu>
         </ul>
 
         <ul>
           <LiMenu>
-            <img src={Lupa} alt="lupa" />
+            <img onClick={clickHandler} src={Lupa} ref={imgRef} alt="lupa" />
+            {searchBar && <InputSearch />}
           </LiMenu>
           <LiMenu>
-            <a href="#filmes">Filtro</a>
+            <a href="#">Filtro</a>
           </LiMenu>
           <LiMenu>
             <a href="#filmes">Login</a>

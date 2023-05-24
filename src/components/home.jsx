@@ -3,7 +3,6 @@ import Main from "./main/main"
 import NavComponent from "./NavBar/navbar"
 import CarouselComponent from './carousel/carousel'
 import Filmes from "./filmes/filmes"
-import Footer from "./footer/footer"
 import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
@@ -23,7 +22,6 @@ export function Homepage() {
             <NavComponent />
             <CarouselComponent />
             <Filmes />
-            {/* <Footer /> */}
             <GlobalStyle />
         </>
     )

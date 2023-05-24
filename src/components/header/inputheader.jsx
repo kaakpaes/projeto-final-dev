@@ -29,6 +29,7 @@ const DivBusca = styled.div`
   border-radius:15px;
   width: 15vw;
   height: 5vh;
+  margin-left: -12rem;
 `;
 
 

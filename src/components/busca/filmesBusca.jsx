@@ -5,39 +5,22 @@ import { useParams } from "react-router-dom";
 
 export const FilmesStyle = styled.section`
   background-color: #000000;
-  width: 100%;
+  width: 100vw;
+  height: 100vh;
   display: flex;
   justify-content: center;
+  align-items: center;
   flex-wrap: wrap;
 `;
-export const H2 = styled.h2`
-  display: flex;
-  font-size: 1.4rem;
-  text-align: center;
-  color: #f2f2f2;
-`;
+
 export const BoxFilms = styled.section`
-  width: 22%;
+display: flex;
+flex-direction: column;
+align-items: center;
+  width: 30%;
 
   img {
     width: 80%;
-  }
-`;
-
-export const BoxTitle = styled.section`
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  div {
-    display: flex;
-    align-items: center;
-  }
-
-  img {
-    width: 15px;
-    cursor: pointer;
   }
 `;
 

@@ -19,9 +19,3 @@ export const NavItem = styled.li`
   font-weight: 300;
   color: white;
 `;
-
-export const InputSearch = styled.input`
-  width: 20%;
-  height: 3vh;
-  border-radius: 5px;
-`;

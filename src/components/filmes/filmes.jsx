@@ -26,19 +26,11 @@ export const BoxFilms = styled.section`
 
 export const BoxTitle = styled.section`
   width: 100%;
+  height: 5rem;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  margin-left: 5rem;
 
-  div {
-    display: flex;
-    align-items: center;
-  }
-
-  img {
-    width: 15px;
-    cursor: pointer;
-  }
 `;
 
 const FilmesTitle = styled.h2`
@@ -56,9 +48,6 @@ const FilmesDate = styled.h2`
   opacity: 0.5;
 `;
 
-const Caixa = styled.input`
-  display: ${(props) => props.show};
-`;
 
 export default function Filmes() {
   const [filmes, setFilmes] = useState([]);
@@ -103,15 +92,6 @@ export default function Filmes() {
     <FilmesStyle id="filmes">
       <BoxTitle>
         <H2>Em Alta</H2>
-        <div>
-          <img onClick={() => setMode(!mode)} src={Lupa} alt="" />
-          <Caixa
-            show={mode === false ? "none" : "initial"}
-            onChange={(e) => {
-              setInput(e.target.value);
-            }}
-          />
-        </div>
       </BoxTitle>
       {filtrados.map((item) => (
         <BoxFilms>

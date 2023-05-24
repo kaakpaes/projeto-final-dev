@@ -17,8 +17,11 @@ flex-direction: column;
 `;
 
 const Lancamentos = styled.h2`
-    padding-bottom: 2rem;
-  color: #f2f2f2;
+  width: 100%;
+  height: 5rem;
+  display: flex;
+  justify-content: space-between;
+  margin-left: 5rem;
 `;
 
 const CarouselDate = styled.h3`
@@ -59,6 +62,7 @@ export default function CarouselSeries() {
     slidesToShow: 5,
     slidesToScroll: 5
   };
+
   return (
     <SliderBox>
       <Lancamentos>Últimos Lançamentos</Lancamentos>

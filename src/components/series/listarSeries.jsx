@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import styled from "styled-components";
 import axios from "axios";
-import Lupa from "./image.png";
 
 export const FilmesStyle = styled.section`
   background-color: #000000;
@@ -12,6 +11,7 @@ export const FilmesStyle = styled.section`
 `;
 export const H2 = styled.h2`
   display: flex;
+  align-items: center;
   font-size: 1.4rem;
   text-align: center;
   color: #f2f2f2;
@@ -26,19 +26,10 @@ export const BoxFilms = styled.section`
 
 export const BoxTitle = styled.section`
   width: 100%;
+  height: 5rem;
   display: flex;
   justify-content: space-between;
-  align-items: center;
-
-  div {
-    display: flex;
-    align-items: center;
-  }
-
-  img {
-    width: 15px;
-    cursor: pointer;
-  }
+  margin-left: 5rem;
 `;
 
 const FilmesTitle = styled.h2`
@@ -46,6 +37,7 @@ const FilmesTitle = styled.h2`
   font-weight: 700;
   font-size: 0.8rem;
   color: #f2f2f2;
+  
 `;
 
 const FilmesDate = styled.h2`
@@ -54,10 +46,7 @@ const FilmesDate = styled.h2`
   font-size: 0.8rem;
   color: #f6f6f6;
   opacity: 0.5;
-`;
-
-const Caixa = styled.input`
-  display: ${(props) => props.show};
+  ;
 `;
 
 export default function ListarSeries() {
@@ -89,15 +78,6 @@ export default function ListarSeries() {
     <FilmesStyle id="filmes">
       <BoxTitle>
         <H2>Em Alta</H2>
-        <div>
-          <img onClick={() => setMode(!mode)} src={Lupa} alt="" />
-          <Caixa
-            show={mode === false ? "none" : "initial"}
-            onChange={(e) => {
-              setInput(e.target.value);
-            }}
-          />
-        </div>
       </BoxTitle>
       {filmes.map((item) => (
         <BoxFilms>

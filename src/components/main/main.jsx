@@ -1,24 +1,18 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import styled from "styled-components";
+import Star from "./star.png"
 
 export const MainStyle = styled.main`
   background-image: url(${(props) => props.back});
   background-repeat: no-repeat;
   background-size: 100% 100%;
   height: 100vh;
-  font-family: "Open Sans", sans-serif;
-  font-weight: 300;
   color: white;
   display: flex;
   padding-top: 18rem;
   padding-left: 9rem;
   flex-direction: column;
-`;
-export const H2 = styled.h2`
-  font-size: 3rem;
-  font-family: "Open Sans", sans-serif;
-  font-weight: 300;
 `;
 
 export const H3 = styled.h3`
@@ -26,6 +20,31 @@ export const H3 = styled.h3`
   font-size: 1rem;
   font-family: "Open Sans", sans-serif;
   font-weight: 300;
+`;
+
+const ButtonDiv = styled.div`
+width: 25rem;
+display: flex;
+justify-content: space-between;
+margin-top: 1rem;
+`;
+const ButtonAssistir = styled.button`
+  width: 14vw;
+  height: 6vh;
+  border-radius: 20px;
+  border: none;
+  background: #d53a00;
+  color: #f2f2f2;
+  font-weight: bold;
+`;
+const ButtonTrailer = styled.button`
+  width: 14vw;
+  height: 6vh;
+  border-radius: 20px;
+  border: none;
+  background: #717171;
+  color: #f2f2f2;
+  font-weight: bold;
 `;
 
 export default function Main() {
@@ -110,11 +129,13 @@ export default function Main() {
       <MainStyle back={fundo.poster} id="main">
         <div>
           <h1>{fundo.title}</h1>
-          <h3>{fundo.year}</h3>
-          <h3>{fundo.genres}</h3>
-          <h3>{fundo.duration}</h3>
-          <h3>{fundo.rating}/10</h3>
+          <H3>{fundo.duration} | {fundo.genres} | {fundo.year}</H3>
+          <h3><img src={Star} alt="lupa" width={"2.5%"} /> {fundo.rating}/10</h3>
           <H3>{fundo.overview}</H3>
+          <ButtonDiv>
+          <ButtonAssistir> Assitir Agora </ButtonAssistir>
+          <ButtonTrailer> Trailer </ButtonTrailer>
+        </ButtonDiv>
         </div>
       </MainStyle>
     </>
