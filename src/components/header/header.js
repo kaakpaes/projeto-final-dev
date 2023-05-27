@@ -4,17 +4,16 @@ import Logo from "../header/logo.png";
 import Lupa from "../header/lupa.png";
 import InputSearch from "./inputheader";
 
-
 export const HeaderStyle = styled.header`
+width: 100vw;
+  height: 10vh;
   position: fixed;
   display: flex;
   flex-direction: column;
   justify-content: center;
   background-color: rgba(119, 136, 153, 0.4);
-  -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(15px);
-  width: 100%;
-  height: 10vh;
+
 
   nav {
     display: flex;
@@ -54,25 +53,26 @@ export const A = styled.a`
   }
 `;
 
+// FUNÇÃO QUE CLICA NA IMAGEM PARA A BARRA DE PESQUISA APARECER E NO SEGUNDO CLIQUE A BARRA DESAPARECE
 export default function Header() {
+  const [searchBar, setSearchBar] = useState(false);
+  const imgRef = useRef(null);
+  const inputRef = useRef(null);
 
-    const [searchBar, setSearchBar] = useState(false); 
-    const imgRef = useRef(null);
-
-  const clickHandler = () => {
-    setSearchBar(true);
+  const click = () => {
+    setSearchBar(!searchBar);
   };
 
-  const handleClickOutside = (event) => {
-    if (imgRef.current && !imgRef.current.contains(event.target)) {
+  const mudandoClick = (event) => {
+    if (inputRef.current && !inputRef.current.contains(event.target) && event.target !== imgRef.current) {
       setSearchBar(false);
     }
   };
 
   useEffect(() => {
-    document.addEventListener('click', handleClickOutside);
+    document.addEventListener('click', mudandoClick);
     return () => {
-      document.removeEventListener('click', handleClickOutside);
+      document.removeEventListener('click', mudandoClick);
     };
   }, []);
 
@@ -97,7 +97,12 @@ export default function Header() {
 
         <ul>
           <LiMenu>
-            <img onClick={clickHandler} src={Lupa} ref={imgRef} alt="lupa" />
+            <img
+              onClick={click}
+              src={Lupa}
+              ref={imgRef}
+              alt="lupa"
+            />
             {searchBar && <InputSearch />}
           </LiMenu>
           <LiMenu>

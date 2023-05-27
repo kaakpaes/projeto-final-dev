@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useNavigate } from 'react-router-dom';
 
 const Input = styled.input`
-width: 5vw;
+width: 8vw;
 height: 3vh;
 outline: none;
 background-color:transparent;
@@ -11,8 +11,6 @@ font-style:italic;
 border: none;
 background-color:#d8ecec;
 border-radius:15px;
-width: 10vw;
-height: 5vh;
 `;
 
 const Button = styled.button`
@@ -27,9 +25,9 @@ const DivBusca = styled.div`
   background-color:#d8ecec;
   border: none;
   border-radius:15px;
-  width: 15vw;
+  width: 14vw;
   height: 5vh;
-  margin-left: -12rem;
+  margin-left: -15rem;
 `;
 
 

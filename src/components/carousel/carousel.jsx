@@ -7,7 +7,7 @@ const SliderBox = styled.section`
 display: flex;
 flex-direction: column;
   height: 70vh;
-  padding: 1rem;
+  padding: 2.5rem;
   border: 2px white;
   display: flex;
   justify-content: center;

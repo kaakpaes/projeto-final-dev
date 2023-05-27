@@ -3,24 +3,30 @@ import * as S from "./style";
 import Lupa from "../header/lupa.png";
 import InputSearch from './inputsearch';
 
+// FUNÇÃO QUE CLICA NA IMAGEM PARA A BARRA DE PESQUISA APARECER E NO SEGUNDO CLIQUE A BARRA DESAPARECE
+
+
 export default function NavComponent() {
   const [searchBar, setSearchBar] = useState(false);
   const imgRef = useRef(null);
+  const inputRef = useRef(null);
 
-  const clickHandler = () => {
-    setSearchBar(true);
+  const click = () => {
+    setSearchBar(!searchBar);
   };
 
-  const handleClickOutside = (event) => {
-    if (imgRef.current && !imgRef.current.contains(event.target)) {
+  const mudandoClick = (event) => {
+    if (inputRef.current && !inputRef.current.contains(event.target) && event.target !== imgRef.current) {
       setSearchBar(false);
     }
   };
 
   useEffect(() => {
-    document.addEventListener('click', handleClickOutside);
+    document.addEventListener('click', mudandoClick
+);
     return () => {
-      document.removeEventListener('click', handleClickOutside);
+      document.removeEventListener('click', mudandoClick
+  );
     };
   }, []);
 
@@ -35,10 +41,8 @@ export default function NavComponent() {
         <S.NavItem>Crime</S.NavItem>
         <S.NavItem>Fantasia</S.NavItem>
         <S.NavItem>Familia</S.NavItem>
-        {searchBar && <InputSearch />}
-        {/* <a href="" > */}
-          <img onClick={clickHandler} ref={imgRef} src={Lupa} alt="lupa" />
-        {/* </a> */}
+        {searchBar && <InputSearch ref={inputRef} type="text" />}
+        <img onClick={click} ref={imgRef} src={Lupa} alt="lupa" />
       </S.NavList>
     </S.NavBar>
   );
